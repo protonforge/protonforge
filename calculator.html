@@ -24,16 +24,24 @@ permalink: /calculate.html
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to ProtonForge!</h1>
-            <p>Physics made easy.</p>
-            <a href="#" class="btn">Get Started</a>
-        </div>
+    <section class="physics-calculator">
+        <h2>Physics Calculator</h2>
+        <form id="physics-form">
+            <label for="topic">Select a topic:</label>
+            <select id="topic" name="topic">
+                <option value="mechanics">Mechanics</option>
+                <option value="electricity">Electricity</option>
+                <option value="magnetism">Magnetism</option>
+                <!-- Add more options as needed -->
+            </select>
+            <button type="submit" class="btn">Calculate</button>
+        </form>
+        <div id="result"></div>
     </section>
 
     <footer>
         <p>&copy; 2024 ProtonForge. All rights reserved.</p>
     </footer>
+<script src="script.js"></script>
 </body>
 </html>
