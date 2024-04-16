@@ -45,7 +45,31 @@ permalink: /login.html
 
         // Handle form submission
         document.addEventListener("DOMContentLoaded", function() {
-            // Your existing code for form submission and error handling...
+            const signupForm = document.getElementById("signup-form");
+            const errorMessage = document.getElementById("error-message");
+
+            signupForm.addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent form submission
+
+                // Get user input
+                const email = signupForm.email.value;
+                const password = signupForm.password.value;
+
+                // Sign up with email and password
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        // Signed up successfully
+                        const user = userCredential.user;
+                        console.log("User signed up:", user);
+                        // Optionally, you can redirect the user to another page after successful signup
+                    })
+                    .catch((error) => {
+                        // Handle errors
+                        const errorMessageText = error.message;
+                        console.error("Error signing up:", errorMessageText);
+                        errorMessage.textContent = errorMessageText;
+                    });
+            });
         });
     </script>
 </body>
