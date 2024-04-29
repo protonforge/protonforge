@@ -8,22 +8,41 @@ permalink: /test.html
 <title>Cyberpunk Text Effect</title>
 <style>
     body {
+        position: relative;
         background-color: #000;
-        margin: 0;
+        text-align: center;
         padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
         font-family: 'Orbitron', sans-serif;
         overflow: hidden;
+        
     }
     
+    .container {
+        border: 2px solid red;
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .image-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .image {
+        max-width: 100%;
+        max-height: 500px;
+        width: auto;
+        height: auto;
+        transition: height 0.5s ease;
+    }
+
     .glitch {
         color: #FCF721; /* Neon blue */
-        font-size: 72px;
+        font-size: 36px;
         text-transform: uppercase;
-        position: relative;
+        margin: auto;
         animation: glitch-animation 2s infinite;
     }
     
@@ -56,16 +75,16 @@ permalink: /test.html
             transform: translate(0);
         }
         20% {
-            transform: translate(-1px, -1px);
+            transform: translate(1px, 0px);
         }
         40% {
-            transform: translate(0px, 1px);
+            transform: translate(0px, -1px);
         }
         60% {
-            transform: translate(-1px, -1px);
+            transform: translate(0px, 0px);
         }
         80% {
-            transform: translate(1px, 0px);
+            transform: translate(0px, 1px);
         }
         100% {
             transform: translate(0);
@@ -206,6 +225,22 @@ permalink: /test.html
 </style>
 </head>
 <body>
-    <div class="glitch" data-text="Night City">Night City</div>
+        <div class="glitch" data-text="Night City">Night City</div>
+        <div class="container" id="container">
+        <div class="image-container">
+            <img class="image" src="your-image.jpg" alt="Night City Image">
+        </div>
+    </div>
+    <script>
+        window.addEventListener('scroll', function() {
+            var image = document.querySelector('.image');
+            var container = document.querySelector('.container');
+            var scrollY = window.scrollY;
+            var imageHeight = Math.min(500 + scrollY, window.innerHeight - 100); // Maximum height is window height - 100px
+            var containerHeight = Math.min(500 + scrollY, window.innerHeight - 100); // Maximum height is window height - 100px
+            image.style.height = imageHeight + 'px';
+            container.style.height = containerHeight + 'px';
+        });
+    </script>
 </body>
 </html>
